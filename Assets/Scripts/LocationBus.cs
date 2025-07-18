@@ -40,7 +40,8 @@ public class LocationBus : MonoBehaviour
             for (int g = 0; g < 20; g++)
             {
                 ParametrAuto parametr = RandomAutoGeneration();
-                if (!grid.AddAuto(parametr))
+
+                if (!ChekDirection(parametr) || !grid.AddAuto(parametr))
                 {
                     continue;
                 }
@@ -117,5 +118,23 @@ public class LocationBus : MonoBehaviour
 
             Start();
         }
+    }
+
+    private bool ChekDirection(ParametrAuto parametr)
+    {
+        int x = parametr.position.x;
+        int y = parametr.position.y;
+        while(grid.ChekBoundGrid(x, y))
+        {
+            if (grid[x,y] != Grid.EMPTY)
+            {
+                return false;
+            }
+
+            x += parametr.direction.x;
+            y += parametr.direction.y;
+        }
+
+        return true;
     }
 }

@@ -69,6 +69,11 @@ public class Grid
         return false;
     }
 
+    public bool ChekBoundGrid(int x, int y)
+    {
+        return x > -1 && x < width && y > -1 && y < height;
+    }
+
     public bool CheckBound(ParametrAuto parametr)
     {
         bool boundX = parametr.position.x > -1;
